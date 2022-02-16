@@ -1,0 +1,26 @@
+version: '3'
+services:
+  php:
+    build: ./php
+    container_name: laravel_apache_php
+    volumes:
+      - ../project:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+      - ./php/vhost.conf:/etc/apache2/conf-enabled/vhost.conf
+    ports:
+      - ${PHP_PORT}:80
+
+  mysql:
+    image: mysql:8.0
+    container_name: laravel_apache_mysql
+    ports:
+      - ${MYSQL_PORT}:3306
+    volumes:
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql/db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel_apache
+      MYSQL_USER: laravel_apache_user
+      MYSQL_PASSWORD: laravel_apache_user
+      TZ: "Asia/Tokyo"
