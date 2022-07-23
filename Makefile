@@ -16,3 +16,7 @@ up:
 .PHONY: php
 php:
 	docker-compose exec php bash
+
+.PHONY: mysql
+mysql:
+	docker-compose exec mysql bash
