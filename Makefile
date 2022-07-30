@@ -20,3 +20,11 @@ php:
 .PHONY: mysql
 mysql:
 	docker-compose exec mysql bash
+
+.PHONY: lint
+lint:
+	docker-compose exec php ./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
+
+.PHONY: lint-fix
+lint-fix:
+	docker-compose exec php ./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix
