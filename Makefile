@@ -28,3 +28,7 @@ lint:
 .PHONY: lint-fix
 lint-fix:
 	docker-compose exec php ./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix
+
+.PHONY: test
+test:
+	docker-compose exec php ./vendor/bin/phpunit
