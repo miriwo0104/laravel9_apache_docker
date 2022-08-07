@@ -32,3 +32,7 @@ lint-fix:
 .PHONY: test
 test:
 	docker-compose exec php ./vendor/bin/phpunit
+
+.PHONY: migrate-fresh-seed
+migrate-fresh-seed:
+	docker-compose exec php php artisan migrate:fresh --seed
